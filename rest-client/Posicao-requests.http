@@ -1,0 +1,55 @@
+@baseUrl = http://localhost:3000
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Goleiro"
+}
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Lateral"
+}
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Zagueiro"
+}
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Meia"
+}
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Atacante"
+}
+
+### Criar
+# @name createPosicao
+POST {{baseUrl}}/posicao
+Content-Type: application/json
+
+{
+  "PosicaoNome": "Técnico"
+}
