@@ -1,19 +1,34 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class Equipe {
-  @PrimaryGeneratedColumn({ type: 'int' })
-  Equipeid: number;
+  @PrimaryColumn()
+  EquipeId: number;
 
-  @Column({ unique: true })
-  EquipeidExt: number;
-
-  @Column({ unique: true })
+  @Column()
   EquipeNome: string;
 
   @Column()
-  EquipeSigla: string;
+  EquipeAbreviacao: string;
 
   @Column()
-  EquipeEscudo: string;
+  EquipeSlug: string;
+
+  @Column()
+  EquipeApelido: string;
+
+  @Column()
+  EquipeNomeFantasia: string;
+
+  @Column()
+  EquipeUrlEditoria: string;
+
+  @Column()
+  EquipeEscudo1: string;
+
+  @Column()
+  EquipeEscudo2: string;
+
+  @Column()
+  EquipeEscudo3: string;
 }

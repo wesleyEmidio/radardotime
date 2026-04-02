@@ -1,10 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class Posicao {
-  @PrimaryGeneratedColumn({ type: 'int' })
-  Posicaoid: number;
+  @PrimaryColumn()
+  PosicaoId: number;
 
-  @Column({ unique: true })
+  @Column()
   PosicaoNome: string;
+
+  @Column()
+  PosicaoAbrev: string;
 }

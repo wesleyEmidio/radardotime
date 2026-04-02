@@ -1,36 +1,54 @@
-import { ConflictException, Injectable } from '@nestjs/common';
-import { CreatePosicaoDto } from './dto/create-posicao.dto';
-import { UpdatePosicaoDto } from './dto/update-posicao.dto';
+import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Posicao } from './entities/posicao.entity';
 import { Repository } from 'typeorm';
+import { firstValueFrom } from 'rxjs';
+import { Posicao } from './entities/posicao.entity';
+import { InterfacePosicao } from './posicao-response.interface';
 
 @Injectable()
 export class PosicaoService {
+  private readonly url = 'https://api.cartola.globo.com/atletas/mercado';
+
   constructor(
+    private readonly httpService: HttpService,
     @InjectRepository(Posicao)
     private readonly posicaoRepository: Repository<Posicao>,
   ) {}
 
-  async create(dto: CreatePosicaoDto) {
-    await this.verificaPosicaoExistente(dto.PosicaoNome);
+  async importarPosicoes(): Promise<string> {
+    try {
+      const response = await firstValueFrom(
+        this.httpService.get<InterfacePosicao>(this.url),
+      );
 
-    const NovoRegistro: CreatePosicaoDto = {
-      PosicaoNome: dto.PosicaoNome,
-    };
+      const posicoes = response.data.posicoes;
 
-    return this.posicaoRepository.save(NovoRegistro);
+      for (const key in posicoes) {
+        const pos = posicoes[key];
+
+        const existe = await this.posicaoRepository.findOne({
+          where: { PosicaoId: pos.id },
+        });
+
+        if (!existe) {
+          const novaPosicao = this.posicaoRepository.create({
+            PosicaoId: pos.id,
+            PosicaoNome: pos.nome,
+            PosicaoAbrev: pos.abreviacao,
+          });
+
+          await this.posicaoRepository.save(novaPosicao);
+        }
+      }
+
+      return 'Importação de Posições criada com sucesso';
+    } catch (error: unknown) {
+      return 'Erro na importação: ' + String(error);
+    }
   }
 
-  async verificaPosicaoExistente(posicaoNome: string) {
-    const exists = await this.posicaoRepository.existsBy({
-      PosicaoNome: posicaoNome,
-    });
-
-    if (exists) {
-      throw new ConflictException(
-        'Posição: ' + posicaoNome + ' já cadastrado.',
-      );
-    }
+  async listar(): Promise<Posicao[]> {
+    return this.posicaoRepository.find();
   }
 }

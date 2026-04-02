@@ -1,11 +1,11 @@
 @baseUrl = http://localhost:3000
 
 ### Criar
-# @name createPosicao
-GET {{baseUrl}}/posicao/importar
+# @name createScout
+POST {{baseUrl}}/scout/seed
 Content-Type: application/json
 
 ### Listar
-# @name createPosicao
-GET {{baseUrl}}/posicao
+# @name createScout
+GET {{baseUrl}}/scout
 Content-Type: application/json

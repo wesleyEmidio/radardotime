@@ -3,13 +3,19 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PosicaoModule } from './posicao/posicao.module';
 import { EquipeModule } from './equipe/equipe.module';
-import { ImportEquipeModule } from './import-equipe/import-equipe.module';
+import { JogadorModule } from './jogador/jogador.module';
+import { ScoutModule } from './scout/scout.module';
+import { CampeonatoModule } from './campeonato/campeonato.module';
+import { CampeonatoEquipeModule } from './campeonatoEquipe/campeonatoEquipe.module';
 
 @Module({
   imports: [
     PosicaoModule,
     EquipeModule,
-    ImportEquipeModule,
+    JogadorModule,
+    ScoutModule,
+    CampeonatoModule,
+    CampeonatoEquipeModule,
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       useFactory: () => {
@@ -37,7 +43,10 @@ import { ImportEquipeModule } from './import-equipe/import-equipe.module';
     }),
     PosicaoModule,
     EquipeModule,
-    ImportEquipeModule,
+    JogadorModule,
+    ScoutModule,
+    CampeonatoModule,
+    CampeonatoEquipeModule,
   ],
 
   controllers: [],

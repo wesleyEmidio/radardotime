@@ -1,23 +1,18 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { EquipeService } from './equipe.service';
-import { CreateEquipeDto } from './dto/create-equipe.dto';
-import { UpdateEquipeDto } from './dto/update-equipe.dto';
+import { Equipe } from './entities/equipe.entity';
 
 @Controller('equipe')
 export class EquipeController {
   constructor(private readonly equipeService: EquipeService) {}
 
-  @Post()
-  create(@Body() createEquipeDto: CreateEquipeDto) {
-    const user = this.equipeService.create(createEquipeDto);
-    return user;
+  @Get('importar')
+  async importar(): Promise<boolean> {
+    return this.equipeService.importarEquipes();
+  }
+
+  @Get()
+  async listar(): Promise<Equipe[]> {
+    return this.equipeService.listar();
   }
 }

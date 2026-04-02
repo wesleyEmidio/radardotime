@@ -1,0 +1,26 @@
+@baseUrl = http://localhost:3000
+
+### Criar vínculo Campeonato x Equipe
+# @name createCampeonatoEquipe
+POST {{baseUrl}}/campeonato-equipe
+Content-Type: application/json
+
+{
+  "CampeonatoId": 1,
+  "EquipeId": 262
+}
+
+### Listar vínculos
+# @name findAllCampeonatoEquipe
+GET {{baseUrl}}/campeonato-equipe
+Content-Type: application/json
+
+### Buscar vínculo específico
+# @name findOneCampeonatoEquipe
+GET {{baseUrl}}/campeonato-equipe/1/10
+Content-Type: application/json
+
+### Deletar vínculo
+# @name deleteCampeonatoEquipe
+DELETE {{baseUrl}}/campeonato-equipe/1/10
+Content-Type: application/json

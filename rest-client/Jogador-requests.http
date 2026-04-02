@@ -1,11 +1,11 @@
 @baseUrl = http://localhost:3000
 
 ### Criar
-# @name createPosicao
-GET {{baseUrl}}/posicao/importar
+# @name createJogador
+GET {{baseUrl}}/jogador/importar
 Content-Type: application/json
 
 ### Listar
-# @name createPosicao
-GET {{baseUrl}}/posicao
+# @name createJogador
+GET {{baseUrl}}/jogador
 Content-Type: application/json

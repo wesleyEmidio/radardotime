@@ -1,0 +1,38 @@
+@baseUrl = http://localhost:3000
+
+### Criar Campeonato
+# @name createCampeonato
+POST {{baseUrl}}/campeonato
+Content-Type: application/json
+
+{
+  "CampeonatoNome": "Brasileirão",
+  "CampeonatoAbrev": "BRA",
+  "CampeonatoAno": 2026
+}
+
+### Listar Campeonatos
+# @name findAllCampeonato
+GET {{baseUrl}}/campeonato
+Content-Type: application/json
+
+### Buscar Campeonato por ID
+# @name findOneCampeonato
+GET {{baseUrl}}/campeonato/1
+Content-Type: application/json
+
+### Atualizar Campeonato
+# @name updateCampeonato
+PUT {{baseUrl}}/campeonato/1
+Content-Type: application/json
+
+{
+  "CampeonatoNome": "Brasileirão Série A",
+  "CampeonatoAbrev": "BRA-A",
+  "CampeonatoAno": 2026
+}
+
+### Deletar Campeonato
+# @name deleteCampeonato
+DELETE {{baseUrl}}/campeonato/1
+Content-Type: application/json
